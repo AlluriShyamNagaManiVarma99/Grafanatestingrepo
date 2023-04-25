@@ -1,1 +1,105 @@
-
+{
+  "datasource": {
+    "uid": "$datasource"
+  },
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "fill": 1,
+  "fillGradient": 0,
+  "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 3
+  },
+  "hiddenSeries": false,
+  "id": 1,
+  "legend": {
+    "alignAsTable": false,
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "rightSide": false,
+    "show": true,
+    "sideWidth": 220,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "percentage": false,
+  "pluginVersion": "9.4.3",
+  "pointradius": 2,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "metricQuery": {
+        "aliasBy": "",
+        "alignmentPeriod": "$alignmentPeriod",
+        "crossSeriesReducer": "REDUCE_SUM",
+        "filters": [
+          "resource.type",
+          "=",
+          "gce_instance"
+        ],
+        "groupBys": [],
+        "metricKind": "DELTA",
+        "metricType": "networking.googleapis.com/vm_flow/egress_bytes_count",
+        "perSeriesAligner": "ALIGN_RATE",
+        "projectName": "$project",
+        "unit": "By",
+        "valueType": "INT64"
+      },
+      "queryType": "metrics",
+      "refId": "A"
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "GCE VM Instance - Egress bytes",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "mode": "time",
+    "show": true,
+    "values": [],
+    "name": null,
+    "buckets": null
+  },
+  "yaxes": [
+    {
+      "format": "Bps",
+      "logBase": 1,
+      "show": true
+    },
+    {
+      "format": "short",
+      "logBase": 1,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false
+  },
+  "timeFrom": null,
+  "timeShift": null
+}
