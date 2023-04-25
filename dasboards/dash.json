@@ -71,7 +71,7 @@
   ],
   "thresholds": [],
   "timeRegions": [],
-  "title": "GCE VM Instance - Egress bytes",
+  "title": "GCE VM Instance - Egress bytes112",
   "tooltip": {
     "shared": true,
     "sort": 0,
