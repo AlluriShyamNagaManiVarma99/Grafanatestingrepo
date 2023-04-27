@@ -1,105 +1,202 @@
 {
-  "datasource": {
-    "uid": "$datasource"
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
   },
-  "aliasColors": {},
-  "bars": false,
-  "dashLength": 10,
-  "dashes": false,
-  "fill": 1,
-  "fillGradient": 0,
-  "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 3
-  },
-  "hiddenSeries": false,
-  "id": 1,
-  "legend": {
-    "alignAsTable": false,
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "rightSide": false,
-    "show": true,
-    "sideWidth": 220,
-    "total": false,
-    "values": false
-  },
-  "lines": true,
-  "linewidth": 1,
-  "nullPointMode": "null",
-  "options": {
-    "alertThreshold": true
-  },
-  "percentage": false,
-  "pluginVersion": "9.4.3",
-  "pointradius": 2,
-  "points": false,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
-  "stack": false,
-  "steppedLine": false,
-  "targets": [
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 25,
+  "links": [],
+  "liveNow": false,
+  "panels": [
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "stackdriver",
+        "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
       },
-      "metricQuery": {
-        "aliasBy": "",
-        "alignmentPeriod": "$alignmentPeriod",
-        "crossSeriesReducer": "REDUCE_SUM",
-        "filters": [
-          "resource.type",
-          "=",
-          "gce_instance"
-        ],
-        "groupBys": [],
-        "metricKind": "DELTA",
-        "metricType": "networking.googleapis.com/vm_flow/egress_bytes_count",
-        "perSeriesAligner": "ALIGN_RATE",
-        "projectName": "$project",
-        "unit": "By",
-        "valueType": "INT64"
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
       },
-      "queryType": "metrics",
-      "refId": "A"
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "repeat": "Sales360AllBiQqueryexecutionTime",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
+          },
+          "queryType": "timeSeriesList",
+          "refId": "A",
+          "timeSeriesList": {
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_NONE",
+            "filters": [
+              "metric.type",
+              "=",
+              "bigquery.googleapis.com/job/num_in_flight"
+            ],
+            "groupBys": [],
+            "perSeriesAligner": "ALIGN_NONE",
+            "preprocessor": "none",
+            "projectName": "nprod-sales360-s-d-c6a2"
+          }
+        }
+      ],
+      "title": "Sales 360 BigQuery Execution Time",
+      "type": "timeseries"
     }
   ],
-  "thresholds": [],
-  "timeRegions": [],
-  "title": "GCE VM Instance - Egress bytes112",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "Inflight requests",
+            "Request count",
+            "Request execution times",
+            "Reservation used bytes by table",
+            "Reservation total bytes",
+            "Reservation used bytes"
+          ],
+          "value": [
+            "bigquerybiengine.googleapis.com/model/inflight_requests",
+            "bigquerybiengine.googleapis.com/model/request_count",
+            "bigquerybiengine.googleapis.com/model/request_latencies",
+            "bigquerybiengine.googleapis.com/reservation/top_tables_cached_bytes",
+            "bigquerybiengine.googleapis.com/reservation/total_bytes",
+            "bigquerybiengine.googleapis.com/reservation/used_bytes"
+          ]
+        },
+        "datasource": {
+          "type": "stackdriver",
+          "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
+        },
+        "definition": "",
+        "description": "Get all BigQuery Request Execution Time for Sales 360",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Sales360AllBiQqueryexecutionTime",
+        "options": [],
+        "query": {
+          "labelKey": "",
+          "loading": false,
+          "projectName": "nprod-sales360-s-d-c6a2",
+          "projects": [
+            {
+              "label": "NPROD - NPROD-sales360-S-D",
+              "value": "nprod-sales360-s-d-c6a2"
+            }
+          ],
+          "refId": "CloudMonitoringVariableQueryEditor-VariableQuery",
+          "selectedMetricType": "bigquerybiengine.googleapis.com/model/inflight_requests",
+          "selectedQueryType": "metricTypes",
+          "selectedSLOService": "",
+          "selectedService": "bigquerybiengine.googleapis.com",
+          "sloServices": []
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
-  "type": "graph",
-  "xaxis": {
-    "mode": "time",
-    "show": true,
-    "values": [],
-    "name": null,
-    "buckets": null
+  "time": {
+    "from": "now-2d",
+    "to": "now"
   },
-  "yaxes": [
-    {
-      "format": "Bps",
-      "logBase": 1,
-      "show": true
-    },
-    {
-      "format": "short",
-      "logBase": 1,
-      "show": true
-    }
-  ],
-  "yaxis": {
-    "align": false
-  },
-  "timeFrom": null,
-  "timeShift": null
+  "timepicker": {},
+  "timezone": "",
+  "title": "Sales 360 All Big Query Execution Time",
+  "uid": "aed2b104-1821-418c-b95f-61bbff0b981e",
+  "version": 5,
+  "weekStart": ""
 }
