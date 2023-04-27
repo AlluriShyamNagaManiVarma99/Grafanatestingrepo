@@ -12,3 +12,4 @@ resource "grafana_dashboard" "elasticsearch" {
    config_json = file("./../dasboards/${each.key}")
    folder      = grafana_folder.ElasticSearch.id
 }
+
