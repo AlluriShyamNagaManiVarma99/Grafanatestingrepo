@@ -3,5 +3,4 @@ resource "grafana_dashboard" "elasticsearch" {
 
    for_each    = fileset("./../dasboards", "*.json")
    config_json = file("./../dasboards/${each.key}")
-   folder      = grafana_folder.ElasticSearch.id
 }
