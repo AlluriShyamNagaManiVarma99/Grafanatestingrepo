@@ -11,21 +11,143 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 1,
-  "id": 25,
+  "graphTooltip": 0,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "stackdriver",
-        "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
+        "type": "doitintl-bigquery-datasource",
+        "uid": "OorrTWa4z"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "doitintl-bigquery-datasource",
+            "uid": "OorrTWa4z"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "orderByCol": "2",
+          "orderBySort": "1",
+          "rawQuery": true,
+          "rawSql": "select count(severity), resource_type \nfrom dummylogsset.new\nwhere severity = \"ERROR\" OR severity = \"INFO\"\ngroup by resource_type\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "-- value --"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "-- time --",
+          "timeColumnType": "TIMESTAMP",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Panel Title",
+      "transparent": true,
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "doitintl-bigquery-datasource",
+        "uid": "OorrTWa4z"
       },
       "fieldConfig": {
         "defaults": {
@@ -46,7 +168,10 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "stepBefore",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -59,7 +184,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "line"
             }
           },
           "mappings": [],
@@ -72,7 +197,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 100
               }
             ]
           }
@@ -80,12 +205,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
+        "h": 9,
+        "w": 12,
         "x": 0,
-        "y": 0
+        "y": 8
       },
-      "id": 1,
+      "id": 2,
       "options": {
         "legend": {
           "calcs": [],
@@ -98,105 +223,61 @@
           "sort": "none"
         }
       },
-      "repeat": "Sales360AllBiQqueryexecutionTime",
-      "repeatDirection": "h",
       "targets": [
         {
           "datasource": {
-            "type": "stackdriver",
-            "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
+            "type": "doitintl-bigquery-datasource",
+            "uid": "OorrTWa4z"
           },
-          "queryType": "timeSeriesList",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "orderByCol": "1",
+          "orderBySort": "1",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  sourceLocation_line, timestamp\nFROM\n  hm-poc-354013.dummylogsset.dt1\n",
           "refId": "A",
-          "timeSeriesList": {
-            "alignmentPeriod": "cloud-monitoring-auto",
-            "crossSeriesReducer": "REDUCE_NONE",
-            "filters": [
-              "metric.type",
-              "=",
-              "bigquery.googleapis.com/job/num_in_flight"
-            ],
-            "groupBys": [],
-            "perSeriesAligner": "ALIGN_NONE",
-            "preprocessor": "none",
-            "projectName": "nprod-sales360-s-d-c6a2"
-          }
+          "select": [
+            [
+              {
+                "params": [
+                  "-- value --"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "-- time --",
+          "timeColumnType": "TIMESTAMP",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
-      "title": "Sales 360 BigQuery Execution Time",
+      "title": "Bigquery Logs Dashboard",
       "type": "timeseries"
     }
   ],
   "refresh": "",
+  "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "Inflight requests",
-            "Request count",
-            "Request execution times",
-            "Reservation used bytes by table",
-            "Reservation total bytes",
-            "Reservation used bytes"
-          ],
-          "value": [
-            "bigquerybiengine.googleapis.com/model/inflight_requests",
-            "bigquerybiengine.googleapis.com/model/request_count",
-            "bigquerybiengine.googleapis.com/model/request_latencies",
-            "bigquerybiengine.googleapis.com/reservation/top_tables_cached_bytes",
-            "bigquerybiengine.googleapis.com/reservation/total_bytes",
-            "bigquerybiengine.googleapis.com/reservation/used_bytes"
-          ]
-        },
-        "datasource": {
-          "type": "stackdriver",
-          "uid": "a5a33ec2-4dab-41a1-8a41-4cc03fd0657d"
-        },
-        "definition": "",
-        "description": "Get all BigQuery Request Execution Time for Sales 360",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Sales360AllBiQqueryexecutionTime",
-        "options": [],
-        "query": {
-          "labelKey": "",
-          "loading": false,
-          "projectName": "nprod-sales360-s-d-c6a2",
-          "projects": [
-            {
-              "label": "NPROD - NPROD-sales360-S-D",
-              "value": "nprod-sales360-s-d-c6a2"
-            }
-          ],
-          "refId": "CloudMonitoringVariableQueryEditor-VariableQuery",
-          "selectedMetricType": "bigquerybiengine.googleapis.com/model/inflight_requests",
-          "selectedQueryType": "metricTypes",
-          "selectedSLOService": "",
-          "selectedService": "bigquerybiengine.googleapis.com",
-          "sloServices": []
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-2d",
-    "to": "now"
+    "from": "2023-03-13T05:19:46.653Z",
+    "to": "2023-03-13T05:20:17.066Z"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Sales 360 All Big Query Execution Time",
-  "uid": "aed2b104-1821-418c-b95f-61bbff0b981e",
-  "version": 5,
+  "title": "Bigquery Logging Dashboard",
+  "uid": "PRNJ5o-Vk",
+  "version": 4,
   "weekStart": ""
 }
